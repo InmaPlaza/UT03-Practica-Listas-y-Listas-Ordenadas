@@ -80,27 +80,8 @@ function size(list){
 
 //Funcion que añade un nuevo elemento al final de la lista y devuelve el tamaño de la lista una vez añadido
 function add(list,elem){
-    elem = parseInt(elem); //Convertimos el elemento a numero
-     
-    //Si el elemento no es un numero, devolvemos una excepcion
- 	if (isNaN(elem)) {
- 		throw "El elemento no es un numero.";
-    }
-     
-    //Si la lista no esta llena, añadimos el elemento
- 	if (!isFull(list)){
- 		list[size(list)] = elem;
- 	} else { //Sino lanza una excepcion diciendo que esta llena
- 		throw "La lista está llena. No puedes poner el elemento sobre ella.";
- 	}
- 	return size(list); //Devolvemos el tamaño de la lista
-} 
-
-//Funcion que añade un nuevo elemento en la posición especificada en la lista,
-//y devuelve el tamaño de la lista una vez añadido
-function addAt(list,elem,index){
     
-}
+} 
 
 //Funcion que devuelve el elemento de la lista de la posición indicada
 function get(list,index){
@@ -192,19 +173,12 @@ function lastElement(list){
 
 //Funcion que elimina el elemento de la posición indicada. Devuelve el elemento borrado
 function remove(list,index){
-    list.splice(index,1);
-    return size(list);
+
 }
 
 //Funcion que elimina el elemento indicado de la lista.
 //Devuelve true si se ha podido borrar el elemento, false en caso contrario.
 function removeElement(list,elem){
-
-}
-
-//Funcion que reemplaza el elemento de la lista indicado por el índice.
-//Devuelve el elemento que estaba anteriormente en la lista.
-function set(list,elem,index){
 
 }
 

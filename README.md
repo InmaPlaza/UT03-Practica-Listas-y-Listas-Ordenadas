@@ -13,3 +13,9 @@ Entregable de ejercicio de Listas y Listas Ordenadas en las dos versiones del ej
 
 ## Version 1.0.2
  - Correccion de errores del fichero ListaStandard.js
+
+## Version 1.0.3
+ - Creacion de las carpetas Lista Ordenada Standard y Lista Ordenada
+ - Creacion de los ficheros ListaOrdStandard.html y ListaOrdStandard.js
+ - Creacion de los ficheros ListaOrd.html y ListaOrd.js
+ - Añadir algo de funcionalidad a los ficheros ListaOrdStandard.js y ListaOrd.js
