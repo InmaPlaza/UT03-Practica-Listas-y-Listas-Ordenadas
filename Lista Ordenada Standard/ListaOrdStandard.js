@@ -97,21 +97,6 @@ function indexOf(list,elem){
  	return position;
 }
 
-//Funcion que devuelve la posición del elemento indicado comenzando por el final. 
-//Si el elemento no está en la lista devuelve -1
-function lastIndexOf(list,elem){
-    var position = -1;
- 	elem = parseInt(elem);
- 	if (!isNaN(elem)) {
-	 	if (!isEmpty(list)){
-	 		position = list.lastIndexOf(elem);  		 		
-	 	} 	
- 	} else{
- 		throw "El elemento no es un numero.";
- 	}
- 	return position;
-}
-
 //Funcion que devuelve el máximo número de elementos que podemos tener en la lista
 function capacity(list){
     return MAX_ELEM_LIST;

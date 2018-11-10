@@ -82,15 +82,15 @@ function size(list){
 function add(list,elem){
     elem = parseInt(elem); //Convertimos el elemento a numero
      
-    //Si el elemento no es un numero, devolvemos una excepcion
+    //Si el elemento no es un numero...
  	if (isNaN(elem)) {
- 		throw "El elemento no es un numero.";
+ 		throw "El elemento no es un numero."; //Lanzamos una excepcion
     }
      
-    //Si la lista no esta llena, añadimos el elemento
+    //Si la lista no esta llena...añadimos el elemento
  	if (!isFull(list)){
  		list[size(list)] = elem;
- 	} else { //Sino lanza una excepcion diciendo que esta llena
+ 	} else { //Sino...lanza una excepcion diciendo que esta llena
  		throw "La lista está llena. No puedes poner el elemento sobre ella.";
  	}
  	return size(list); //Devolvemos el tamaño de la lista
@@ -99,12 +99,42 @@ function add(list,elem){
 //Funcion que añade un nuevo elemento en la posición especificada en la lista,
 //y devuelve el tamaño de la lista una vez añadido
 function addAt(list,elem,index){
-    
+    elem = parseInt(elem); //Convertimos el elemento a numero
+     
+    //Si el elemento no es un numero...
+ 	if (isNaN(elem)) {
+ 		throw "El elemento no es un numero."; //Lanzamos una excepcion
+    }
+     
+    //Si la lista no esta llena...
+ 	if (!isFull(list)){
+		//Si el indice es mayor que el tamaño de la lista o es menor o igual que -1...
+		if( index > size(list) || index <= -1){
+			throw "El indice esta fuera de los limites de la lista."; //Lanzamos una excepcion
+		} else{ //Sino...añadimos el elemento a la lista
+			var long = size(list); 
+			for(var i = index, aux; i < long; i++){
+				aux = list[i]; 
+				list[i] = elem; 
+				elem = aux; 
+			}
+		}
+ 	} else { 
+ 		throw "La lista está llena. No puedes poner el elemento sobre ella."; //Lanzamos una excepcion
+	}
+	
+ 	return size(list); //Devolvemos el tamaño de la lista
 }
 
 //Funcion que devuelve el elemento de la lista de la posición indicada
 function get(list,index){
-
+	//Si el indice es mayor que el tamaño de la lista o es menor o igual que -1...
+    if(index > size(list) || index <= -1){
+        throw "El indice esta fuera de los limites de la lista."; //Lanzamos una excepcion
+    }
+    else {
+        return list[index]; //Devolvemos el elemento de la posicion indicada
+    }
 }
 
 //Funcion que devuelve la lista en formato cadena. El delimitador de elementos será “-“
@@ -114,7 +144,7 @@ function toString(list){
 	//Si la lista no esta vacia...
  	if (!isEmpty(list)){
  		var length = size(list); //Recogemos su tamaño en una variable
- 		for (var  i= 0; i < length-1; i++){ //Recorremos la lista y vamos recogiendo los valores con el "-"
+ 		for (var  i= 0; i < length-1; i++){ //Recorremos la lista y vamos recogiendo los valores añadiendo el "-"
  			str = str + list[i] + " - ";
  		} 		 		
  		str = str + list[i]; 		
@@ -125,10 +155,13 @@ function toString(list){
 //Funcion que devuelve la posición del elemento indicado,si el elemento no está en la lista devuelve -1
 function indexOf(list,elem){
 	var position = -1;
- 	elem = parseInt(elem);
- 	if (!isNaN(elem)) { //Si el elemento es un numero...
-	 	if (!isEmpty(list)){ //Si la lista no esta vacia...
-	 		var length = size(list);	
+	elem = parseInt(elem);
+
+	//Si el elemento es un numero...
+ 	if (!isNaN(elem)) {
+		//Si la lista no esta vacia...
+	 	if (!isEmpty(list)){ 
+	 		var length = size(list); //Recogemos el tamaño de la lista	
 			var i = 0;
 			
 			//Mientras i sea menor que el tamaño de la lista y position = -1
@@ -141,7 +174,7 @@ function indexOf(list,elem){
 	 		} 		 		
 	 	} 	
  	} else{
- 		throw "El elemento no es un numero.";
+ 		throw "El elemento no es un numero."; //Lanzamos una excepcion
  	}
  	return position;
 }
@@ -149,7 +182,28 @@ function indexOf(list,elem){
 //Funcion que devuelve la posición del elemento indicado comenzando por el final. 
 //Si el elemento no está en la lista devuelve -1
 function lastIndexOf(list,elem){
+	var position = -1;
+	elem = parseInt(elem);
 
+	//Si el elemento es un numero...
+ 	if (!isNaN(elem)) { 
+		//Si la lista no esta vacia...
+	 	if (!isEmpty(list)){ 
+	 		var i = size(list);	
+			
+			//Mientras i sea mayor que -1 y position = -1
+	 		while ((i > -1) && (position === -1)){
+				//Si lista de i es igual al elemento... 
+	 			if (list[i] === elem) {
+	 				position = i; //Metemos en position el valor de i
+	 			}
+	 			i--; //Decrementamos el valor de i en uno
+	 		} 		 		
+	 	} 	
+ 	} else{
+ 		throw "El elemento no es un numero."; //Lanzamos una excepcion
+ 	}
+ 	return position;
 } 
 
 //Funcion que devuelve el máximo número de elementos que podemos tener en la lista
@@ -159,68 +213,124 @@ function capacity(list){
 
 //Funcion que devuelve vacía la lista
 function clear(list){
- 	var elem = Number.NaN;
+	var elem = Number.NaN;
+	 
+	//Si la lista no esta vacia...
  	if (!isEmpty(list)){
- 		var length = size(list);	
- 		for (var i  =0; i < length; i++){
- 			list[i] = Number.NaN;
+ 		var length = size(list); //Recogemos el tamaño de la lista
+ 		for (var i  = 0; i < length; i++){
+ 			list[i] = Number.NaN; //Asignamos un valor que no sea un numero, es decir, eliminamos los elementos
  		} 		 		 		
  	} 	
 } 
 
 //Funcion que devuelve el primer elemento de la lista
 function firstElement(list){
- 	var first;
+	var first;
+	
+	//Si la lista no esta vacia...
  	if (!isEmpty(list)){
- 		first = list[0]; 		
+ 		first = list[0]; //Asignamos a la variable first, el valor del primer elemento de la lista		
  	} else {
- 		throw "La lista está vacia.";
+ 		throw "La lista está vacia."; //Lanzamos una excepcion
  	}
  	return first;
 } 
 
 //Funcion que devuelve el ultimo elemento de la lista
 function lastElement(list){
- 	var last;
+	var last;
+	
+	//Si la lista no esta vacia...
  	if (!isEmpty(list)){
- 		last = list[size(list)-1]; 		
+ 		last = list[size(list)-1]; //Asignamos a la variable last, el valor del ultimo elemento de la lista	
  	} else {
- 		throw "La lista está vacia.";
+ 		throw "La lista está vacia."; //Lanzamos una excepcion
  	}
  	return last;
 } 
 
 //Funcion que elimina el elemento de la posición indicada. Devuelve el elemento borrado
 function remove(list,index){
-    list.splice(index,1);
-    return size(list);
+	var num;
+	var aux;
+
+    //Si el indice es mayor que el tamaño de la lista o es menor o igual que -1...
+    if(index > size(list) || index <= -1){
+        throw "El indice esta fuera de los limites de la lista."; //Lanzamos una excepcion
+    } else {
+		var num = list[index];
+		var long = size(list);
+		for(var i = index; i <= long; i++){
+			aux = list[i+1]; //Recogemos el valor del elemento siguiente
+			list[i] = aux; //Añadimos ese nuevo valor, asi vamos eliminando elementos
+		}
+    }
+    return num; //Devolvemos el elemento borrado
 }
 
 //Funcion que elimina el elemento indicado de la lista.
 //Devuelve true si se ha podido borrar el elemento, false en caso contrario.
 function removeElement(list,elem){
+	elem = parseInt(elem);
+    var borrado = false;
 
+    //Si el elemento es un numero...
+    if (!isNaN(elem)) {
+		var posicion = indexOf(list,elem); //Recogemos la posicion del elemento
+		
+		//Si la posicion es distinta a -1
+		if(posicion != -1){
+			var aux;
+			var long = size(list);
+			for(var i = posicion; i <= long; i++){
+				aux = list[i+1]; //Recogemos el valor del elemento siguiente
+				list[i] = aux; //Añadimos ese nuevo valor, asi vamos eliminando elementos
+			}
+			borrado = true; //Cambiamos el valor a true
+
+		}
+    } else {
+        throw "El elemento no es un numero."; //Lanzamos una excepcion
+    }
+    return borrado; //Devolvemos el valor de borrado
 }
 
 //Funcion que reemplaza el elemento de la lista indicado por el índice.
 //Devuelve el elemento que estaba anteriormente en la lista.
 function set(list,elem,index){
+	var num;
+	var elem = parseInt(elem);
 
+	//Si el elemento es un numero...
+	if(!isNaN(elem)){
+		//Si el indice es mayor que el tamaño de la lista o es menor o igual que -1...
+		if(index > size(list) || index <= -1){
+			throw "El indice esta fuera de los limites de la lista."; //Lanzamos una excepcion
+		} else {
+			num = list[index]; //Recogemos el indice que queremos reemplazar
+			list[index] = elem; //Asignamos a ese indice el elemento nuevo
+		}
+	} else {
+		throw "El elemento no es un numero."; //Lanzamos una excepcion
+	}
+	return num;
 }
 
 function testlist(){
-
+	//var list = create ();
     var list = []; 	
     console.log ("Capacidad: " + capacity(list));
-    console.log("Es vacía: " + isEmpty(list));
+    console.log("¿Esta vacia la lista?: " + isEmpty(list));
+    console.log("¿Esta llena la lista?: " + isFull(list));
     console.log("Longitud: " + size(list));
 
     try {
         for (var i = 0; i < 4; i++){
             console.log("Nº de elementos: " + add(list,i*10));
         }
-        addAt(list,40,3);
-        console.log("Añado el elemento 40 en la posicion 3");
+        addAt(list,25,3);
+        console.log("Añado el elemento 25 en la posicion 3");
         add(list,i); //Esto genera una excepcion
     } catch (err) {
         console.log(err);
@@ -250,6 +360,6 @@ function testlist(){
         }
     } catch (err) {
         console.log(err); //Cuando la lista esta vacia, la excepcion debe ser capturada
-    }	 	
+    } 	
 } 
 window.onload = testlist;
