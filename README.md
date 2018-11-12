@@ -25,3 +25,6 @@ Entregable de ejercicio de Listas y Listas Ordenadas en las dos versiones del ej
 
 ## Version 1.0.5
  - Terminar la funcionalidad del fichero ListaOrdStandard.js
+
+## Version 1.0.6
+ - Terminar la funcionalidad del fichero ListaOrd.js
